@@ -8,6 +8,7 @@
  * redistribution of this file, and for a DISCLAIMER OF ALL
  * WARRANTIES.
  */
+ //HALO5
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ class Speaker {
     private AudioFormat audioFormat;
     private SourceDataLine sourceLine;
 
-    
+
     public void playSound(String filename){
 
         String strFilename = filename;
@@ -99,15 +100,15 @@ class Speaker {
 
 class Soung_Generator {
 
-    
+
 
 	static String text;
-	
+
 
     public static void main(String tex) {
 
        // listAllVoices();
-    	
+
     	text = tex;
 
         FreeTTS freetts;
@@ -118,8 +119,8 @@ class Soung_Generator {
         System.out.println("Using voice: " + voiceName);
 
 	System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-    
-        
+
+
         VoiceManager voiceManager = VoiceManager.getInstance();
         Voice helloVoice = voiceManager.getVoice(voiceName);
 
@@ -136,7 +137,7 @@ class Soung_Generator {
 
 
        audioPlayer = new SingleFileAudioPlayer("/home/final-v8/Desktop/VOICEHELPER_REF/PlatformII/wind/wind",Type.WAVE);
-//attach the audioplayer 
+//attach the audioplayer
        helloVoice.setAudioPlayer(audioPlayer);
 
 
@@ -144,14 +145,14 @@ class Soung_Generator {
 
         helloVoice.speak(text);
 
-        
+
         helloVoice.deallocate();
 //don't forget to close the audioplayer otherwise file will not be saved
         audioPlayer.close();
-        
+
         Speaker q = new Speaker();
         q.playSound("/home/final-v8/Desktop/VOICEHELPER_REF/PlatformII/wind/wind.wav");
-        
+
     }
 }
 
@@ -257,7 +258,7 @@ public class TranscriberDemo {
         System.out.println("-------------------------------------");
 
         //Soung_Generator f = new Soung_Generator();
-        
+
         recognizer.startRecognition(true);
         while (true) {
             String utterance = recognizer.getResult().getHypothesis();
@@ -269,11 +270,11 @@ public class TranscriberDemo {
         recognizer.stopRecognition();
     }
 
-    
+
     public static void main(String[] args) throws Exception {
-    	
+
     	//Soung_Generator f = new Soung_Generator();
-    	
+
         Configuration configuration = new Configuration();
         configuration.setAcousticModelPath(ACOUSTIC_MODEL);
         configuration.setDictionaryPath(DICTIONARY_PATH);
@@ -294,39 +295,39 @@ public class TranscriberDemo {
             new LiveSpeechRecognizer(configuration);
 
         jsgfRecognizer.startRecognition(true);
-        
+
         System.out.println("ready to use");
-        
+
         Soung_Generator f = new Soung_Generator();
-        
+
         while (true) {
             System.out.println("Choose menu item:");
             System.out.println("Example: go to the bank account");
             System.out.println("Example: exit the program");
             System.out.println("Example: weather forecast");
             System.out.println("Example: digits\n");
-            
-            
+
+
             String utterance = jsgfRecognizer.getResult().getHypothesis();
-            
+
             System.out.println("You say:"+utterance);
-            
+
             if (utterance=="<unk>"){
             	System.out.println("no ideas");
             }
             else{
             	//f.main("You say:"+utterance);
             }
-            
+
             if (utterance.startsWith("exit")){
-            	System.out.println("good bye");
+            	//System.out.println("good bye");
                 //break;
             }
 
             if (utterance.equals("bank")){
             	//System.out.println("nice  to see you");
             }
-            
+
             if (utterance.equals("digits")) {
                 /*jsgfRecognizer.stopRecognition();
                 recognizeDigits(grxmlRecognizer);
@@ -334,14 +335,14 @@ public class TranscriberDemo {
             }
 
             if (utterance.equals("lights")) {
-            	
+
             	//java.lang.Runtime.getRuntime().exec("bash -c ./f1");
-            	
+
             	ProcessBuilder pb = new ProcessBuilder("bash", "./f1.sh");
                 pb.inheritIO();
                 Process process = pb.start();
                 process.waitFor();
-                
+
                 f.main("lights swiched");
                 /*jsgfRecognizer.stopRecognition();
                 recognizerBankAccount(jsgfRecognizer);
