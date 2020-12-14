@@ -320,8 +320,8 @@ public class TranscriberDemo {
             }
 
             if (utterance.startsWith("exit")){
-            	//System.out.println("good bye");
-                //break;
+            	System.out.println("good bye");
+                break;
             }
 
             if (utterance.equals("bank")){
