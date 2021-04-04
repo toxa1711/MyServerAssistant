@@ -301,12 +301,6 @@ public class TranscriberDemo {
         Soung_Generator f = new Soung_Generator();
 
         while (true) {
-            System.out.println("Choose menu item:");
-            System.out.println("Example: go to the bank account");
-            System.out.println("Example: exit the program");
-            System.out.println("Example: weather forecast");
-            System.out.println("Example: digits\n");
-
 
             String utterance = jsgfRecognizer.getResult().getHypothesis();
 
@@ -321,7 +315,7 @@ public class TranscriberDemo {
 
             if (utterance.startsWith("exit")){
             	System.out.println("good bye");
-                break;
+              //break;
             }
 
             if (utterance.equals("bank")){
@@ -334,7 +328,7 @@ public class TranscriberDemo {
                 jsgfRecognizer.startRecognition(true);*/
             }
 
-            if (utterance.equals("lights")) {
+            if (utterance.contains("lights") && utterance.contains("tensor")) {
 
             	//java.lang.Runtime.getRuntime().exec("bash -c ./f1");
 
