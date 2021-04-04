@@ -313,10 +313,7 @@ public class TranscriberDemo {
             	//f.main("You say:"+utterance);
             }
 
-            if (utterance.startsWith("exit")){
-            	System.out.println("good bye");
-              //break;
-            }
+            
 
             if (utterance.equals("bank")){
             	//System.out.println("nice  to see you");
